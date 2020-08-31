@@ -2,35 +2,48 @@
 <head>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1.5, maximum-scale = 2.0, user-scalable=1", charset="UTF-8"/>
   <link rel="stylesheet" href='/static/style.css' />
+  <link rel="stylesheet" href='/static/layout.css' />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
 <h1>Enviro+ Dashboard</h1>
-<table>
-  <tr>
-    <td valign = "top">
-      <span id = "readings">---</span><br />
-		<table>
-		   <tr><td><label for="graph-sel">Graph:</label></td>
-		       <td><select id="graph-sel">
-						<option value = "5min">5 minutes</option>
-						<option value = "day">day</option>
-						<option value = "week">week</option>
-						<option value = "month">month</option>
-						<option value = "year">year</option>
-					</select>
-				</td>
-			</tr>
-			<tr><td><label for="fan">Fan:</label></td>
-                <td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
-			</tr>
-		</table>
-    </td>
-    <td><canvas id="canvas" height="400" width="600"></canvas><br><br>
-        <table><tr id = "legend"></tr><tr id = "range"></tr></table>
-    </td>
-  </tr>
-</table>
+
+<div class="dashboard">
+  <div class="container">
+    <div class="container-item">
+      <span id = "readings">---</span>
+    </div>
+    <div class="container-item">
+      <table>
+         <tr>
+           <td><label for="graph-sel">Graph:</label></td>
+           <td><select id="graph-sel">
+               <option value="5min">5 minutes</option>
+               <option value="day">day</option>
+               <option value="week">week</option>
+               <option value="month">month</option>
+               <option value="year">year</option>
+             </select>
+           </td>
+         </tr>
+         <tr>
+           <td><label for="fan">Fan:</label></td>
+           <td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
+         </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="container">
+    <div  class="container-item">
+      <canvas id="canvas" height="400" width="600"></canvas>
+    </div>
+    <div  class="container-item">
+      <table><tr id = "legend"></tr><tr id = "range"></tr></table>
+    </div>
+  </div>
+</div>
+
 <script>
 setInterval(function() {
   // Call a function repetitively with 1 second interval

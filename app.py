@@ -80,7 +80,7 @@ y_offset = 2
 
 units = ["°C",
          "%",
-         "mBar",
+         "hPa",
          "Lux",
          "kΩ",
          "kΩ",

@@ -107,7 +107,7 @@ def display_everything():
         y = y_offset + ((HEIGHT // row_count) * (i % row_count))
         message = "{}: {:s} {}".format(variable[:4], str(data_value), unit)
         tol = 1.01
-        rgb = (255, 0, 255) if data_value > last_value * tol  else (0, 255, 255) if data_value < last_value / tol else (0, 255, 0)
+        rgb = (213, 0, 0) if data_value > last_value * tol  else (0, 159, 212) if data_value < last_value / tol else (0, 170, 85)
         draw.text((x, y), message, font = smallfont, fill = rgb)
     st7735.display(img)
 

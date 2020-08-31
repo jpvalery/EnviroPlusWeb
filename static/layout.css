@@ -14,10 +14,10 @@
   justify-content: start;
   align-items: center;
   align-content: center;
-  margin: 20px;
+  padding: 20px;
 }
 
 .container-item {
   flex: 0 0 auto;
-  margin: 12px;
+  margin: 16px;
 }

@@ -6,12 +6,16 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
-<h1>Enviro+ Dashboard</h1>
+
+<div class="dashboard">
+  <h1>Enviro+ Dashboard</h1>
+</div>
 
 <div class="dashboard">
   <div class="container">
     <div class="container-item">
-      <span id = "readings">---</span>
+      <div id="readings">
+      </div>
     </div>
     <div class="container-item">
       <table>
@@ -102,8 +106,8 @@ var canvas;
 var ctx;
 var data;
 var yScaleSteps = 10;
-var yLabelHeight = 10;
-var xLabelHeight = 10;
+var yLabelHeight = 16;
+var xLabelHeight = 16;
 var xScale;
 var yScale;
 var yLabelWidth = 25;
@@ -112,7 +116,7 @@ function graph(d) {
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
 	ctx.fillStyle = "#0099ff"
-	ctx.font = "20 pt Verdana"
+	ctx.font = "16px sans-serif"
 
 	yScale = (canvas.height - yLabelHeight - xLabelHeight);
 	xScale = (canvas.width - yLabelWidth) / (data.length - 1);

@@ -28,7 +28,7 @@ try:
 except ImportError:
     import ltr559
 from enviroplus import gas
-from pms5003 import PMS5003, ReadTimeoutError as pmsReadTimeoutError
+# from pms5003 import PMS5003, ReadTimeoutError as pmsReadTimeoutError
 import threading
 from time import sleep, time, asctime, localtime, strftime, gmtime
 from math import ceil, floor
@@ -48,7 +48,7 @@ except ImportError:
 bus = SMBus(1)
 bme280 = BME280(i2c_dev=bus) # BME280 temperature, humidity and pressure sensor
 
-pms5003 = PMS5003() # PMS5003 particulate sensor
+# pms5003 = PMS5003() # PMS5003 particulate sensor
 
 IO.setmode(IO.BCM)   # Set pin numbering
 IO.setup(4,IO.OUT)   # Fan controller on GPIO 4
@@ -80,14 +80,16 @@ y_offset = 2
 
 units = ["°C",
          "%",
-         "mBar",
+         "hPa",
          "Lux",
          "kΩ",
          "kΩ",
-         "kΩ",
-         "/100cl",
-         "/100cl",
-         "/100cl"]
+         "kΩ"
+         #,
+         #"/100cl",
+         #"/100cl",
+         #"/100cl"
+         ]
 
 # Displays all the text on the 0.96" LCD
 def display_everything():
@@ -105,7 +107,7 @@ def display_everything():
         y = y_offset + ((HEIGHT // row_count) * (i % row_count))
         message = "{}: {:s} {}".format(variable[:4], str(data_value), unit)
         tol = 1.01
-        rgb = (255, 0, 255) if data_value > last_value * tol  else (0, 255, 255) if data_value < last_value / tol else (0, 255, 0)
+        rgb = (213, 0, 0) if data_value > last_value * tol  else (0, 159, 212) if data_value < last_value / tol else (0, 170, 85)
         draw.text((x, y), message, font = smallfont, fill = rgb)
     st7735.display(img)
 
@@ -122,23 +124,22 @@ def read_data(time):
     humidity = bme280.get_humidity()
     lux = ltr559.get_lux()
     gases = gas.read_all()
-    while True:
-        try:
-            particles = pms5003.read()
-            break
-        except RuntimeError as e:
-            print("Particle read failed:", e.__class__.__name__)
-            if not run_flag:
-                raise e
-            pms5003.reset()
-            sleep(30)
-
-    pm100 = particles.pm_per_1l_air(10.0);
-    pm50 = particles.pm_per_1l_air(5.0) - pm100;
-    pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
-    pm10 = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25;
-    pm5 = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10;
-    pm3 = particles.pm_per_1l_air(0.3) - pm100 - pm50 - pm25 - pm10 - pm5;
+#    while True:
+#        try:
+#            particles = pms5003.read()
+#            break
+#        except RuntimeError as e:
+#            print("Particle read failed:", e.__class__.__name__)
+#            if not run_flag:
+#                raise e
+#            pms5003.reset()
+#            sleep(30)
+#
+#    pm100 = particles.pm_per_1l_air(10.0);
+#    pm50 = particles.pm_per_1l_air(5.0) - pm100;
+#    pm25 = particles.pm_per_1l_air(2.5) - pm100 - pm50;
+#    pm10 = particles.pm_per_1l_air(1.0) - pm100 - pm50 - pm25;
+#    pm5 = particles.pm_per_1l_air(0.5) - pm100 - pm50 - pm25 - pm10;
     record = {
         'time' : asctime(localtime(time)),
         'temp' : round(temperature,1),
@@ -148,12 +149,12 @@ def read_data(time):
         'oxi'  : round(gases.oxidising / 1000, 1),
         'red'  : round(gases.reducing / 1000),
         'nh3'  : round(gases.nh3 / 1000),
-        'pm03' : pm3,
-        'pm05' : pm5,
-        'pm10' : pm10,
-        'pm25' : pm25,
-        'pm50' : pm50,
-        'pm100': pm100,
+    #    'pm03' : pm3,
+    #    'pm05' : pm5,
+    #    'pm10' : pm10,
+    #    'pm25' : pm25,
+    #    'pm50' : pm50,
+    #    'pm100': pm100,
     }
     return record
 

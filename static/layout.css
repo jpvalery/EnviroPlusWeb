@@ -1,0 +1,23 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: start
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  align-content: center;
+  padding: 20px;
+}
+
+.container-item {
+  flex: 0 0 auto;
+  margin: 16px;
+}

@@ -93,10 +93,10 @@ function getGraph() {
 }
 
 var items = [
-    {name: "temp",  colour: "#AA0000", min: 0,   max: 50},
+    {name: "temp",  colour: "#AA0000", min: 0,   max: 40},
     {name: "humi",  colour: "#1978D4", min: 0,   max: 100},
     {name: "pres",  colour: "#007A7C", min: 950, max: 1050},
-    {name: "lux",   colour: "#F9C642", min: 0,   max: 5000},
+    {name: "lux",   colour: "#F9C642", min: 0,   max: 2000},
     {name: "oxi",   colour: "#009FD4", min: 0,   max: 400},
     {name: "red",   colour: "#D35400", min: 0, max: 1000},
     {name: "nh3",   colour: "#9400D3",    min: 0, max: 500},
@@ -168,7 +168,7 @@ function graph(d) {
     for(var item of items) {
         ctx.strokeStyle= item.colour;
         plotData(item.name, item.min, item.max);
-        keys += '<td style="color:' + item.colour + '"> ' + item.name + ' </td>';
+        keys += '<td style="color:' + item.colour + '; font-weight: bold;"> ' + item.name + ' </td>';
         ranges += '<td>/' + (item.max - item.min) + '</td>';
     }
     // Update the legend

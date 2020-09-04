@@ -119,7 +119,7 @@ log.disabled = True
 run_flag = True
 
 def read_data(time):
-    temperature = bme280.get_temperature()
+    temperature = bme280.get_temperature() - 8
     pressure = bme280.get_pressure()
     humidity = bme280.get_humidity()
     lux = ltr559.get_lux()

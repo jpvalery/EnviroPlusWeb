@@ -21,3 +21,7 @@
   flex: 0 0 auto;
   margin: 16px;
 }
+
+table {
+    width: 100% !important;
+}

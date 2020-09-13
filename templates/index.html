@@ -16,25 +16,25 @@
     <div class="container-item">
       <div id="readings">
       </div>
+      <div id="graph-fan-settings"
+        <table>
+           <tr>
+             <td><label for="graph-sel">Graph:</label></td>
+             <td><select id="graph-sel">
+                 <option value="5min">5 minutes</option>
+                 <option value="day">day</option>
+                 <option value="week">week</option>
+                 <option value="month">month</option>
+                 <option value="year">year</option>
+               </select>
+             </td>
+           </tr>
+           <tr>
+             <td><label for="fan">Fan:</label></td>
+             <td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
+           </tr>
+        </table>
     </div>
-    <div class="container-item">
-      <table>
-         <tr>
-           <td><label for="graph-sel">Graph:</label></td>
-           <td><select id="graph-sel">
-               <option value="5min">5 minutes</option>
-               <option value="day">day</option>
-               <option value="week">week</option>
-               <option value="month">month</option>
-               <option value="year">year</option>
-             </select>
-           </td>
-         </tr>
-         <tr>
-           <td><label for="fan">Fan:</label></td>
-           <td><input id="fan" type="number" min="0" max="100" step="5" value="100" size="3" name="fan"></td>
-         </tr>
-      </table>
     </div>
   </div>
 
